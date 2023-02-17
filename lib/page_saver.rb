@@ -1,5 +1,4 @@
 require File.join(File.expand_path(File.dirname(__FILE__)), 'webpage_fetcher')
-#require './webpage_fetcher'
 
 class PageSaver
   attr_reader :url, :page_fetcher, :page
