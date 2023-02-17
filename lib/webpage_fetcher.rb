@@ -9,7 +9,7 @@ class WebpageFetcher
   end
 
   def response
-    @response ||= URI.open(@url).read
+    @response = URI.open(@url).read
   end
 
   def base_url

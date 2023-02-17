@@ -3,11 +3,11 @@ require 'nokogiri'
 class MetadataPrinter
   attr_reader :url, :time, :page_fetcher, :doc
 
-  def initialize(url)
+  def initialize(url, doc)
     @url = url
     @time = Time.now
+    @doc = doc
     @page_fetcher = WebpageFetcher.new(url)
-    @doc ||= Nokogiri::HTML(page_fetcher.response)
   end
 
   def print

@@ -1,11 +1,16 @@
 require 'optparse'
 require './lib/page_saver'
 require './lib/metadata_printer'
+require './lib/archiver'
+
 class Processor
   def process
     options
     ARGV.each do |url|
-      options[:metadata] ? MetadataPrinter.new(url).print : PageSaver.new(url).save
+      archiver = Archiver.new(url)
+      archiver.archive
+      MetadataPrinter.new(url, archiver.doc).print if options[:metadata]
+
     rescue => error
       ErrorPrinter.print("#{url}: #{error.message}")
       next
